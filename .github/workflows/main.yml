@@ -14,7 +14,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install git-buildpackage
-        run: sudo apt-get install -y git-buildpackage
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y git-buildpackage
       - uses: actions/checkout@v3
       - uses: jtdor/build-deb-action@v1
         env:
