@@ -1,0 +1,34 @@
+name: Create debian package
+
+permissions:
+  contents: write
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  Create_Packages:
+    name: Create Package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          path: "REPO"
+
+      - name: Create debain package
+        run: |
+          dpkg-buildpackage -G
+      #- name: Copy script files around to stop .github from being added to the package then build the package
+      #  run: |
+      #    mkdir -p SOURCES/my-package-name
+      #    cp -Rf REPO/usr REPO/etc SOURCES/my-package-name
+      #    sudo rpmbuild --define "_topdir $(pwd)" -bb my-package-name.spec
+
+
+      #- name: Release the Package
+      #  uses: softprops/action-gh-release@v1
+      #  with:
+      #    files: RPMS/my-package-name_0.0.1-1.noarch.rpm
