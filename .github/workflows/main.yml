@@ -18,4 +18,5 @@ jobs:
         env:
           DEB_BUILD_OPTIONS: noautodbgsym
         with:
+          before-build-hook: DEBEMAIL="Robert Burger <robert.burger@dlr.de>" gbp dch
           buildpackage-opts: --build=binary --no-sign
