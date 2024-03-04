@@ -20,5 +20,5 @@ jobs:
         with:
           extra-build-deps: git-buildpackage
           before-build-hook: |
-            DEBEMAIL="Robert Burger <robert.burger@dlr.de>" gbp dch
+            DEBEMAIL="Robert Burger <robert.burger@dlr.de>" gbp dch --ignore-branch
           buildpackage-opts: --build=binary --no-sign
