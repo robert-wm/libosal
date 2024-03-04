@@ -13,17 +13,12 @@ jobs:
   build-debs:
     runs-on: ubuntu-latest
     steps:
-      - name: Install git-buildpackage
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y git-buildpackage
       - uses: actions/checkout@v3
       - uses: jtdor/build-deb-action@v1
         env:
           DEB_BUILD_OPTIONS: noautodbgsym
         with:
+          extra-build-deps: git-buildpackage
           before-build-hook: |
-            sudo apt-get update
-            sudo apt-get install -y git-buildpackage
             DEBEMAIL="Robert Burger <robert.burger@dlr.de>" gbp dch
           buildpackage-opts: --build=binary --no-sign
