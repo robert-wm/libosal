@@ -10,17 +10,11 @@ on:
     branches: [ "*" ]
 
 jobs:
-  Create_Packages:
-    name: Create Package
+  build-debs:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-        with:
-          path: "REPO"
-
-      - name: Create debain package
-        uses: jtdor/build-deb-action@v1
+      - uses: actions/checkout@v3
+      - uses: jtdor/build-deb-action@v1
         env:
           DEB_BUILD_OPTIONS: noautodbgsym
         with:
